@@ -48,6 +48,23 @@
 			BNO = #{bno}
 	</select>
 	
+	<insert id="insert" parameterType="com.edu.SpringBoardPractice.domain.BoardDTO">
+		INSERT INTO BOARD
+			(
+			BNO
+			,WRITER
+			,TITLE
+			,CONTENTS
+			)
+		VALUES
+			(
+			 (SELECT IFNULL(MAX(BNO),0) + 1 FROM BOARD B)
+			,#{writer}
+			,#{title}
+			,#{contents}
+			)
+	</insert>
+	
 	<update id="update" parameterType="com.edu.SpringBoardPractice.domain.BoardDTO">
 		UPDATE
 			BOARD

@@ -32,6 +32,10 @@ public class BoardServiceImpl {
 		return session.selectOne("board.selectOne", bno);
 	}
 	
+	public void boardInsert(BoardDTO boardDTO) {
+		session.insert("board.insert", boardDTO);
+	}
+	
 	public void boardUpdate(BoardDTO boardDTO) {
 		session.update("board.update", boardDTO);
 	}

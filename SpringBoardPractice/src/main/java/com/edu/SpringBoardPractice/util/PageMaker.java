@@ -16,6 +16,9 @@ public class PageMaker {
 	private int startBlock;
 	private int endBlock;
 	
+	private boolean prev = false;
+	private boolean next = false;
+	
 	public void setting(int totalData) {
 		this.totalData = totalData;
 		
@@ -26,5 +29,8 @@ public class PageMaker {
 		startBlock = (int)(curPage/(blockSize+0.1)) * blockSize + 1;
 		endBlock = startBlock + blockSize -1;
 		if(endBlock > totalPage) endBlock = totalPage;
+		
+		if(startBlock != 1) prev = true;
+		if(endBlock != totalPage) next = true;
 	}
 }

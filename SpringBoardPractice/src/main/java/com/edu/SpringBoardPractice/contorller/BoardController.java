@@ -27,6 +27,20 @@ public class BoardController {
 		return "boardSelectOne";
 	}
 	
+	@GetMapping("boardInsert")
+	public String boardInsertForm() {
+		log.info("boardInsertForm");
+		return "boardInsert";
+	}
+	
+	@PostMapping("boardInsert")
+	public String boardInsert(BoardDTO boardDTO) {
+		log.info("boardInsert");
+		log.info(boardDTO);
+		service.boardInsert(boardDTO);
+		return "redirect:/";
+	}
+	
 	@GetMapping("boardDelete")
 	public String boardDelete(int bno) {
 		log.info("boardDelete");

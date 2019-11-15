@@ -32,10 +32,18 @@
 </tr>
 </c:forEach>
 </table>
+<c:if test="${pageMaker.prev}">
+	<a href="${path}/?curPage=${pageMaker.startBlock - 1}">prev</a>
+</c:if>
 <c:forEach begin="${pageMaker.startBlock}" end="${pageMaker.endBlock}" var="item">
-	<a href="${path}/?curPage=${itme}">
+	<a href="${path}/?curPage=${item}">
 		${item}
 	</a>
 </c:forEach>
+<c:if test="${pageMaker.next}">
+	<a href="${path}/?curPage=${pageMaker.endBlock + 1}">next</a>
+</c:if>
+<br>
+<a href="${path}/boardInsert">글쓰기</a>
 </body>
 </html>

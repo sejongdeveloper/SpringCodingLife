@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="reply">
+	
+	<select id="selectOne" parameterType="com.edu.SpringBoardPractice.domain.BoardDTO" resultType="com.edu.SpringBoardPractice.domain.ReplyDTO">
+		SELECT
+			RNO
+			,WRITER
+			,CONTENTS
+			,BNO_GROUP
+			,STEP
+			,SPACING
+			,INSERT_DATE
+			,UPDATE_DATE
+		FROM
+			REPLY
+		WHERE
+			BNO_GROUP = #{bnoGroup}
+		ORDER BY
+			STEP, RNO
+	</select>
+	
+	<insert id="insert" parameterType="com.edu.SpringBoardPractice.domain.ReplyDTO">
+	
+	INSERT INTO REPLY
+		(
+		RNO
+		,WRITER
+		,CONTENTS
+		,BNO_GROUP
+		,STEP
+		,SPACING
+		)
+	VALUES
+		(
+		 (SELECT IFNULL(MAX(RNO),0) FROM REPLY R)
+		 ,#{writer}
+		 ,#{bnoGroup}
+		 ,#{step} + 1
+		 ,#{spacing} + 1
+		)
+	
+	</insert>
+	
+</mapper>  
