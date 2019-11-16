@@ -15,4 +15,5 @@ public class BoardDTO {
 	private Date insertDate;
 	private Date updateDate;
 	
+	private int replyCnt;
 }

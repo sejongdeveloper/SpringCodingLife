@@ -21,5 +21,38 @@
 <a href="${path}">목록</a>
 <a href="${path}/boardUpdate?bno=${boardDTO.bno}">수정</a>
 <a href="${path}/boardDelete?bno=${boardDTO.bno}">삭제</a>
+
+<input type="hidden" name="bno" value="${boardDTO.bno}">
+<input type="text" name="replyer" value="댓글유저">
+<input type="text" name="reply">
+<button onclick="replyInsert()">등록</button>
 </body>
+
+<script type="text/javascript">
+
+function replyInsert() {
+	
+	var xhr = new XMLHttpRequest();
+	var data = {
+		bno: "${boardDTO.bno}",
+		replyer: document.getElementsByName("replyer")[0].value,
+		reply: document.getElementsByName("reply")[0].value		
+	};
+	
+	xhr.onload = function() {
+		if(xhr.status === 200 || xhr.status === 201) {
+			console.log(xhr.responseText);
+		} else {
+			console.error(xhr.responseText);
+		}
+	}
+	
+	xhr.open("post","${path}/reply");
+	xhr.setRequestHeader("content-Type", "application/json");
+	xhr.send(JSON.stringify(data));
+	
+}
+
+</script>
+
 </html>

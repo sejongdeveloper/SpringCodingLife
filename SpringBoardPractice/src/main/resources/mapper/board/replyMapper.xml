@@ -25,22 +25,19 @@
 	
 	<insert id="insert" parameterType="com.edu.SpringBoardPractice.domain.ReplyDTO">
 	
-	INSERT INTO REPLY
+	INSERT INTO BOARD_REPLY
 		(
 		RNO
-		,WRITER
-		,CONTENTS
-		,BNO_GROUP
-		,STEP
-		,SPACING
+		,BNO
+		,REPLY
+		,REPLYER
 		)
 	VALUES
 		(
-		 (SELECT IFNULL(MAX(RNO),0) FROM REPLY R)
-		 ,#{writer}
-		 ,#{bnoGroup}
-		 ,#{step} + 1
-		 ,#{spacing} + 1
+		 (SELECT IFNULL(MAX(RNO),0) + 1 FROM BOARD_REPLY BR)
+		 ,#{bno}
+		 ,#{reply}
+		 ,#{replyer}
 		)
 	
 	</insert>

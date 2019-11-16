@@ -67,4 +67,5 @@ public class BoardController {
 		
 		return "redirect:/boardSelectOne?bno=" + boardDTO.getBno();
 	}
+	
 }

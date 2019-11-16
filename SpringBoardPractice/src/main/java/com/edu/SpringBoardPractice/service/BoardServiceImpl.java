@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
 
 import com.edu.SpringBoardPractice.domain.BoardDTO;
+import com.edu.SpringBoardPractice.domain.BoardReplyDTO;
 import com.edu.SpringBoardPractice.util.PageMaker;
 
 import lombok.AllArgsConstructor;
@@ -42,5 +43,9 @@ public class BoardServiceImpl {
 	
 	public void boardDelete(int bno) {
 		session.delete("board.delete", bno);
+	}
+	
+	public void replyInsert(BoardReplyDTO boardReplyDTO) {
+		session.insert("reply.insert", boardReplyDTO);
 	}
 }
