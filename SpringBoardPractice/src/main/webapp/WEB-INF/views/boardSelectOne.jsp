@@ -26,31 +26,40 @@
 <input type="text" name="replyer" value="댓글유저">
 <input type="text" name="reply">
 <button onclick="replyInsert()">등록</button>
+<button onclick="replyInsert2()">등록2</button>
 </body>
 
 <script type="text/javascript">
 
 function replyInsert() {
-	
 	var xhr = new XMLHttpRequest();
 	var data = {
-		bno: "${boardDTO.bno}",
-		replyer: document.getElementsByName("replyer")[0].value,
-		reply: document.getElementsByName("reply")[0].value		
-	};
-	
+			bno: document.getElementsByName("bno")[0].value,
+			replyer: document.getElementsByName("replyer")[0].value,
+			reply: document.getElementsByName("reply")[0].value
+		}
 	xhr.onload = function() {
-		if(xhr.status === 200 || xhr.status === 201) {
-			console.log(xhr.responseText);
-		} else {
-			console.error(xhr.responseText);
+	  if (xhr.status === 200) {
+	    console.log(xhr.responseText);
+	  } else {
+	    console.error(xhr.responseText);
+	  }
+	};
+	xhr.open('POST', '${path}/reply');
+	xhr.setRequestHeader("Content-Type", "application/json");
+	xhr.send(JSON.stringify(data));
+}
+
+function replyInsert2() {
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
+		if(this.readyState == 4 && this.status == 200) {
+			console.log(this.responseText);
+			console.log(JSON.parse(this.responseText));
 		}
 	}
-	
-	xhr.open("post","${path}/reply");
-	xhr.setRequestHeader("content-Type", "application/json");
-	xhr.send(JSON.stringify(data));
-	
+	xhr.open("get","${path}/reply",true);
+	xhr.send();
 }
 
 </script>

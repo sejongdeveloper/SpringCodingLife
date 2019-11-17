@@ -18,6 +18,12 @@
 <input type="submit" value="등록">
 <button onclick="list()">목록</button>
 </form>
+
+<form action="${path}/fileUploadAction" method="post" enctype="multipart/form-data">
+<input type="file" name="uploadFile" multiple="multiple">
+<input type="submit" value="업로드">
+</form>
+
 </body>
 
 <script type="text/javascript">

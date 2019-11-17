@@ -10,5 +10,6 @@
   
   <mappers>
     <mapper resource="mapper/board/boardMapper.xml"/>
+    <mapper resource="mapper/board/replyMapper.xml"/>
   </mappers>
 </configuration>
